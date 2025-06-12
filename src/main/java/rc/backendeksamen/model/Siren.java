@@ -1,6 +1,7 @@
 package rc.backendeksamen.model;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.*;
 
 import java.util.ArrayList;
@@ -14,7 +15,8 @@ public class Siren {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
     private String locationName;
-    private String operationalStatus;
+    private boolean operationalStatus;
+    @JsonProperty("isInWorkingCondition")
     private boolean isInWorkingCondition;
     private double latitude;
     private double longitude;
@@ -41,12 +43,12 @@ public class Siren {
         this.locationName = locationName;
     }
 
-    public String getOperationalStatus() {
+    public boolean isOperationalStatus() {
         return operationalStatus;
     }
 
-    public void setOperationalStatus(String status) {
-        this.operationalStatus = status;
+    public void setOperationalStatus(boolean operationalStatus) {
+        this.operationalStatus = operationalStatus;
     }
 
     public boolean isInWorkingCondition() {

@@ -15,7 +15,7 @@ public class Fire {
     private long id;
     private String name;
     private LocalDateTime timestamp;
-    private String status;
+    private boolean status;
     private double latitude;
     private double longitude;
     @ManyToMany
@@ -51,11 +51,11 @@ public class Fire {
         this.timestamp = timestamp;
     }
 
-    public String getStatus() {
+    public boolean isStatus() {
         return status;
     }
 
-    public void setStatus(String status) {
+    public void setStatus(boolean status) {
         this.status = status;
     }
 

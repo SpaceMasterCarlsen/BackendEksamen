@@ -48,7 +48,7 @@ public class FireController {
     public ResponseEntity<Fire> updateFireById(@PathVariable long id, @RequestBody Fire fire){
         return fireService.findById(id).map(exiting -> {
             exiting.setTimestamp(fire.getTimestamp());
-            exiting.setStatus(fire.getStatus());
+            exiting.setStatus(fire.isStatus());
             exiting.setLatitude(fire.getLatitude());
             exiting.setLongitude(fire.getLongitude());
             Fire updated = fireService.save(exiting);
