@@ -1,5 +1,6 @@
 package rc.backendeksamen.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 
 import java.util.ArrayList;
@@ -13,17 +14,21 @@ public class Siren {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
     private String status;
-    private boolean sirenOn;
-    //TODO make latitude and longitude
+    private boolean isInWorkingCondition;
+    private double latitude;
+    private double longitude;
     @ManyToMany(mappedBy = "activatedSirens")
+    @JsonBackReference
     private List<Fire> fireHistory = new ArrayList<>();
 
     public Siren(){}
 
-    public Siren(long id, String status, boolean sirenOn, List<Fire> fireHistory) {
+    public Siren(long id, String status, boolean isInWorkingCondition, double latitude, double longitude, List<Fire> fireHistory) {
         this.id = id;
         this.status = status;
-        this.sirenOn = sirenOn;
+        this.isInWorkingCondition = isInWorkingCondition;
+        this.latitude = latitude;
+        this.longitude = longitude;
         this.fireHistory = fireHistory;
     }
 
@@ -43,12 +48,12 @@ public class Siren {
         this.status = status;
     }
 
-    public boolean isSirenOn() {
-        return sirenOn;
+    public boolean isInWorkingCondition() {
+        return isInWorkingCondition;
     }
 
-    public void setSirenOn(boolean sirenOn) {
-        this.sirenOn = sirenOn;
+    public void setIsInWorkingCondition(boolean isinWorkingCondition) {
+        isInWorkingCondition = isinWorkingCondition;
     }
 
     public List<Fire> getFireHistory() {
@@ -58,4 +63,21 @@ public class Siren {
     public void setFireHistory(List<Fire> fireHistory) {
         this.fireHistory = fireHistory;
     }
+
+    public double getLatitude() {
+        return latitude;
+    }
+
+    public void setLatitude(double latitude) {
+        this.latitude = latitude;
+    }
+
+    public double getLongitude() {
+        return longitude;
+    }
+
+    public void setLongitude(double longitude) {
+        this.longitude = longitude;
+    }
+
 }

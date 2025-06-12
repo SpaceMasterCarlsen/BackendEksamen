@@ -1,5 +1,6 @@
 package rc.backendeksamen.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 
 import java.time.LocalDateTime;
@@ -14,18 +15,22 @@ public class Fire {
     private long id;
     private LocalDateTime timestamp;
     private String status;
-    //TODO make latitude and longitude
+    private double latitude;
+    private double longitude;
     @ManyToMany
+    @JsonBackReference
     @JoinTable(name = "fire_siren", joinColumns = @JoinColumn(name = "fire_id"),
     inverseJoinColumns = @JoinColumn(name = "siren_id"))
     private List<Siren> activatedSirens = new ArrayList<>();
 
     public Fire(){}
 
-    public Fire(long id, LocalDateTime timestamp, String status, List<Siren> activatedSirens) {
+    public Fire(long id, LocalDateTime timestamp, String status, double latitude, double longitude, List<Siren> activatedSirens) {
         this.id = id;
         this.timestamp = timestamp;
         this.status = status;
+        this.latitude = latitude;
+        this.longitude = longitude;
         this.activatedSirens = activatedSirens;
     }
 
@@ -59,5 +64,21 @@ public class Fire {
 
     public void setActivatedSirens(List<Siren> activatedSirens) {
         this.activatedSirens = activatedSirens;
+    }
+
+    public double getLatitude() {
+        return latitude;
+    }
+
+    public void setLatitude(double latitude) {
+        this.latitude = latitude;
+    }
+
+    public double getLongitude() {
+        return longitude;
+    }
+
+    public void setLongitude(double longitude) {
+        this.longitude = longitude;
     }
 }
