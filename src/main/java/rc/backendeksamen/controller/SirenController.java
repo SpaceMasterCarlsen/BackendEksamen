@@ -46,7 +46,7 @@ public class SirenController {
     @PutMapping("/siren/{id}")
     public ResponseEntity<Siren> updateSirenById(@PathVariable long id, @RequestBody Siren siren){
         return sirenService.findById(id).map(exiting -> {
-            exiting.setStatus(siren.getStatus());
+            exiting.setOperationalStatus(siren.getOperationalStatus());
             exiting.setIsInWorkingCondition(siren.isInWorkingCondition());
             exiting.setLatitude(siren.getLatitude());
             exiting.setLongitude(siren.getLongitude());

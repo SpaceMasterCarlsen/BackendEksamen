@@ -13,7 +13,8 @@ public class Siren {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
-    private String status;
+    private String locationName;
+    private String operationalStatus;
     private boolean isInWorkingCondition;
     private double latitude;
     private double longitude;
@@ -23,9 +24,11 @@ public class Siren {
 
     public Siren(){}
 
-    public Siren(long id, String status, boolean isInWorkingCondition, double latitude, double longitude, List<Fire> fireHistory) {
+    public Siren(long id, String locationName, String operationalStatus, boolean isInWorkingCondition,
+                 double latitude, double longitude, List<Fire> fireHistory) {
         this.id = id;
-        this.status = status;
+        this.locationName = locationName;
+        this.operationalStatus = operationalStatus;
         this.isInWorkingCondition = isInWorkingCondition;
         this.latitude = latitude;
         this.longitude = longitude;
@@ -40,12 +43,20 @@ public class Siren {
         this.id = id;
     }
 
-    public String getStatus() {
-        return status;
+    public String getLocationName() {
+        return locationName;
     }
 
-    public void setStatus(String status) {
-        this.status = status;
+    public void setLocationName(String locationName) {
+        this.locationName = locationName;
+    }
+
+    public String getOperationalStatus() {
+        return operationalStatus;
+    }
+
+    public void setOperationalStatus(String status) {
+        this.operationalStatus = status;
     }
 
     public boolean isInWorkingCondition() {

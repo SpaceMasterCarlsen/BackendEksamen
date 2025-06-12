@@ -27,7 +27,8 @@ public class InitData implements CommandLineRunner {
         f1.setLatitude(55.69212);
         f1.setLongitude(12.55637);
         Siren siren = new Siren();
-        siren.setStatus("Activated");
+        siren.setOperationalStatus("On");
+        siren.setLocationName("Monica Beach");
         siren.setIsInWorkingCondition(true);
         siren.setLatitude(55.69212);
         siren.setLongitude(12.55637);
@@ -37,7 +38,8 @@ public class InitData implements CommandLineRunner {
         f2.setLatitude(55.69212);
         f2.setLongitude(12.55637);
         Siren siren2 = new Siren();
-        siren2.setStatus("Activated");
+        siren2.setLocationName("Pacific Palisades");
+        siren2.setOperationalStatus("On");
         siren2.setIsInWorkingCondition(true);
         siren2.setLatitude(55.69212);
         siren2.setLongitude(12.55637);
