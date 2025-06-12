@@ -5,7 +5,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import rc.backendeksamen.model.Siren;
-import rc.backendeksamen.repository.SirenRepository;
 import rc.backendeksamen.service.SirenService;
 
 import java.util.List;
@@ -18,12 +17,9 @@ public class SirenController {
     @Autowired
     SirenService sirenService;
 
-    @Autowired
-    SirenRepository repository;
-
     @GetMapping("/siren")
     public ResponseEntity<List<Siren>> getAllSirens(){
-        List<Siren> sirens = repository.findAll();
+        List<Siren> sirens = sirenService.findAll();
         if(sirens.isEmpty()){
             return ResponseEntity.notFound().build();
         } else {
@@ -33,7 +29,7 @@ public class SirenController {
 
     @GetMapping("/siren/{id}")
     public ResponseEntity<Siren> getSirenById(@PathVariable long id){
-        Optional<Siren> orgSiren = repository.findById(id);
+        Optional<Siren> orgSiren = sirenService.findById(id);
         if(orgSiren.isPresent()){
             return ResponseEntity.ok(orgSiren.get());
         } else {
@@ -43,27 +39,27 @@ public class SirenController {
 
     @PostMapping("/siren")
     public ResponseEntity<String> postSiren(@RequestBody Siren siren){
-        repository.save(siren);
+        sirenService.save(siren);
         return ResponseEntity.status(HttpStatus.CREATED).body("Siren created");
     }
 
     @PutMapping("/siren/{id}")
     public ResponseEntity<Siren> updateSirenById(@PathVariable long id, @RequestBody Siren siren){
-        return repository.findById(id).map(exiting -> {
+        return sirenService.findById(id).map(exiting -> {
             exiting.setStatus(siren.getStatus());
             exiting.setIsInWorkingCondition(siren.isInWorkingCondition());
             exiting.setLatitude(siren.getLatitude());
             exiting.setLongitude(siren.getLongitude());
-            Siren updated = repository.save(exiting);
+            Siren updated = sirenService.save(exiting);
             return ResponseEntity.ok(updated);
         }).orElseGet(() -> ResponseEntity.notFound().build());
     }
 
     @DeleteMapping("/siren/{id}")
     public ResponseEntity<String> deleteSirenById(@PathVariable long id){
-        Optional<Siren> orgSiren = repository.findById(id);
+        Optional<Siren> orgSiren = sirenService.findById(id);
         if(orgSiren.isPresent()){
-            repository.deleteById(id);
+            sirenService.deleteById(id);
             return ResponseEntity.ok().body("Siren deleted");
         } else {
             return ResponseEntity.notFound().build();
