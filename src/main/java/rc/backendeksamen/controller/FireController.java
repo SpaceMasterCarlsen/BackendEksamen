@@ -5,6 +5,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import rc.backendeksamen.model.Fire;
+import rc.backendeksamen.model.Siren;
 import rc.backendeksamen.service.FireService;
 
 import java.util.List;
@@ -59,6 +60,10 @@ public class FireController {
     public ResponseEntity<String> deleteFireById(@PathVariable long id){
         Optional<Fire> orgFire = fireService.findById(id);
         if(orgFire.isPresent()){
+            Fire fire = orgFire.get();
+            for(Siren siren : fire.getActivatedSirens()){
+                siren.getFireHistory().remove(fire);
+            }
             fireService.deleteById(id);
             return ResponseEntity.ok().body("Fire deleted");
         } else {

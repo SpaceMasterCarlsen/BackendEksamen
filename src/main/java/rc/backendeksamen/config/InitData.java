@@ -22,6 +22,7 @@ public class InitData implements CommandLineRunner {
     @Override
     public void run(String... args) throws Exception{
         Fire f1 = new Fire();
+        f1.setName("The bad fizz");
         f1.setStatus("Active");
         f1.setTimestamp(LocalDateTime.of(2020, 1, 10, 0, 0));
         f1.setLatitude(55.69212);
@@ -33,6 +34,7 @@ public class InitData implements CommandLineRunner {
         siren.setLatitude(55.69212);
         siren.setLongitude(12.55637);
         Fire f2 = new Fire();
+        f2.setName("Gods Wrath");
         f2.setStatus("Active");
         f2.setTimestamp(LocalDateTime.of(2022, 2, 22, 0, 0));
         f2.setLatitude(55.69212);

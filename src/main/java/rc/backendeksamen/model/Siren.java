@@ -24,16 +24,6 @@ public class Siren {
 
     public Siren(){}
 
-    public Siren(long id, String locationName, String operationalStatus, boolean isInWorkingCondition,
-                 double latitude, double longitude, List<Fire> fireHistory) {
-        this.id = id;
-        this.locationName = locationName;
-        this.operationalStatus = operationalStatus;
-        this.isInWorkingCondition = isInWorkingCondition;
-        this.latitude = latitude;
-        this.longitude = longitude;
-        this.fireHistory = fireHistory;
-    }
 
     public long getId() {
         return id;

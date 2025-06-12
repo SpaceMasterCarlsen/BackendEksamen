@@ -32,6 +32,6 @@ public class SirenServiceImpl implements SirenService{
 
     @Override
     public void deleteById(long id) {
-
+        repository.deleteById(id);
     }
 }

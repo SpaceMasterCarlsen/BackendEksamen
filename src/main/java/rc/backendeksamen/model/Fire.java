@@ -13,6 +13,7 @@ public class Fire {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
+    private String name;
     private LocalDateTime timestamp;
     private String status;
     private double latitude;
@@ -25,14 +26,6 @@ public class Fire {
 
     public Fire(){}
 
-    public Fire(long id, LocalDateTime timestamp, String status, double latitude, double longitude, List<Siren> activatedSirens) {
-        this.id = id;
-        this.timestamp = timestamp;
-        this.status = status;
-        this.latitude = latitude;
-        this.longitude = longitude;
-        this.activatedSirens = activatedSirens;
-    }
 
     public long getId() {
         return id;
@@ -40,6 +33,14 @@ public class Fire {
 
     public void setId(long id) {
         this.id = id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 
     public LocalDateTime getTimestamp() {

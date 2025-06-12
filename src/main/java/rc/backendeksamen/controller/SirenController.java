@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import rc.backendeksamen.model.Fire;
 import rc.backendeksamen.model.Siren;
 import rc.backendeksamen.service.SirenService;
 
@@ -59,6 +60,10 @@ public class SirenController {
     public ResponseEntity<String> deleteSirenById(@PathVariable long id){
         Optional<Siren> orgSiren = sirenService.findById(id);
         if(orgSiren.isPresent()){
+            Siren siren = orgSiren.get();
+            for(Fire fire : siren.getFireHistory()){
+                fire.getActivatedSirens().remove(siren);
+            }
             sirenService.deleteById(id);
             return ResponseEntity.ok().body("Siren deleted");
         } else {
