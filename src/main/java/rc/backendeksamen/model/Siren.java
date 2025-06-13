@@ -26,6 +26,13 @@ public class Siren {
 
     public Siren(){}
 
+    public Siren(String locationName, boolean operationalStatus, boolean isInWorkingCondition, double latitude, double longitude) {
+        this.locationName = locationName;
+        this.operationalStatus = operationalStatus;
+        this.isInWorkingCondition = isInWorkingCondition;
+        this.latitude = latitude;
+        this.longitude = longitude;
+    }
 
     public long getId() {
         return id;

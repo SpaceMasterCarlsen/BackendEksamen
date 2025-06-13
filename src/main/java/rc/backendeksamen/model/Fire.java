@@ -26,6 +26,13 @@ public class Fire {
 
     public Fire(){}
 
+    public Fire(String name, LocalDateTime timestamp, boolean status, double latitude, double longitude) {
+        this.name = name;
+        this.timestamp = timestamp;
+        this.status = status;
+        this.latitude = latitude;
+        this.longitude = longitude;
+    }
 
     public long getId() {
         return id;
